@@ -4,7 +4,7 @@ import { Box, Text, Flex, Spacer } from "@chakra-ui/react";
 export default function Navbar() {
   return (
     <Flex>
-        <Box mr={10}><Text color="#e50914" fontWeight={700} fontSize={25}>NETFLIX</Text></Box>
+        <Box mr={10}><Text color="#e50914" fontWeight={700} fontSize={25} cursor="pointer">NETFLIX</Text></Box>
         <Box mt={2}>
             <Flex>
             <Text mr={4} color="#fff" fontWeight={500} fontSize={14}>Home</Text>

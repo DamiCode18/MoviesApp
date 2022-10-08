@@ -1,5 +1,5 @@
 import './App.css';
-import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { RecoilRoot } from 'recoil';
 import  Movies from './Movies';
 import Navbar from './components/Navbar';
 import { Box } from "@chakra-ui/react"
