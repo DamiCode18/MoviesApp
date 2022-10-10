@@ -16,8 +16,8 @@ export default function Navbar() {
         <Spacer />
         <Box>
             <Flex>
-            <Input type="text" />
-            <Search2Icon />
+            <Input type="text" color="#fff" borderColor="none" />
+            <Search2Icon color="#fff" />
             </Flex>
         </Box>
     </Flex>
