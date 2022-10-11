@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Flex, Spacer, Input } from "@chakra-ui/react";
+import { Box, Text, Flex, Spacer, Input, useColorMode  } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
 export default function Navbar() {
@@ -16,8 +16,8 @@ export default function Navbar() {
         <Spacer />
         <Box>
             <Flex>
-            <Input type="text" color="#fff" borderColor="none" />
-            <Search2Icon color="#fff" />
+            <Input type="text" color="#fff" borderColor="none" position="relative" />
+            <Search2Icon color="#fff" position="absolute" right="3rem" top="0.6rem" cursor="pointer" />
             </Flex>
         </Box>
     </Flex>
