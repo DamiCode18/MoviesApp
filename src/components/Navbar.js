@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, Flex, Spacer, Input, useColorMode  } from "@chakra-ui/react";
+import { Box, Text, Flex, Spacer, Input  } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
 export default function Navbar() {
