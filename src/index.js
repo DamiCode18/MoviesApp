@@ -1,15 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { ChakraProvider } from '@chakra-ui/react'
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import  customTheme  from './customTheme'
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { RecoilRoot } from "recoil";
+import "./index.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import customTheme from "./customTheme";
+
+const queryClient = new QueryClient();
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ChakraProvider theme={customTheme}>
-    <App />
+      <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false}/>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>
 );
