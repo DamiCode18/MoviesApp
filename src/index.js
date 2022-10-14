@@ -12,9 +12,9 @@ import customTheme from "./customTheme";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false
-    }
-  }
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +22,7 @@ root.render(
   <React.StrictMode>
     <ChakraProvider theme={customTheme}>
       <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false}/>
+        <ReactQueryDevtools initialIsOpen={false} />
         <RecoilRoot>
           <App />
         </RecoilRoot>
