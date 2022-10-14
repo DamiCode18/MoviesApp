@@ -22,25 +22,25 @@ export default function Movies() {
   console.log(movie);
   return (
     <Box>
-      <Box>
-        <Heading>Unlimited Access to your Favorites Movies</Heading>
-        <Image src={Poster} alt="image of a movie" objectFit="cover" />
+      <Box position="relative">
+        <Heading position="absolute" h="100px" bg='black' mt='250px' maxW="400px">Unlimited Access to your Favorites Movies</Heading>
+        <Image src={Poster} alt="image of a movie" objectFit="cover" h='700px' w='full' />
       </Box>
       <Flex>
-        <Text color={color} fontWeight="bold" p={2}>
+        <Text color={color} fontWeight="bold" p={2} mt={2}>
           Featured
         </Text>
         <Spacer />
       </Flex>
       <SimpleGrid columns={{ base: 2, md: 4, lg: 6, xl: 8 }} spacing={5}>
         {movies.map((movie) => (
-          <Box key={movie.Title} maxW={80} cursor="pointer">
+          <Box key={movie.Title} cursor="pointer" h="350px" py={4}>
             <Image
               src={movie.Poster}
               alt="movie_poster"
               borderRadius="xl"
-              h="260px"
-              w="168.5px"
+              w="100%"
+              h='300px'
               objectFit="cover"
             />
             <Text color={color} fontSize="sm" fontWeight="semi-bold">

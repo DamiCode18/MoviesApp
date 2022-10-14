@@ -9,7 +9,6 @@ import {
   FormControl,
   InputGroup,
   InputLeftElement,
-  CloseButton,
   Button,
   useOutsideClick,
 } from "@chakra-ui/react";
@@ -25,7 +24,6 @@ export default function Navbar() {
   const ref = useRef();
   const toast = useToast();
   const [title, setTitle] = useState("");
-  const [clear, setClear] = useState(false);
   const [show, setShow] = useState(false);
   const [fetch, setFetch] = useState(false);
   const [setMovie] = useRecoilState(moviesDataState);
@@ -98,8 +96,6 @@ export default function Navbar() {
         <Flex>
           <form onSubmit={searchMovie}>
             <FormControl
-              onMouseEnter={() => setClear(true)}
-              onMouseLeave={() => setClear(false)}
               ref={ref}
             >
               <InputGroup size="md">
@@ -125,7 +121,7 @@ export default function Navbar() {
                     autoComplete={false}
                     _placeholder={{ paddingLeft: "30px" }}
                     placeholder="search movies..."
-                    type="text"
+                    type="search"
                     color={color}
                     borderColor="none"
                     value={title}
@@ -142,16 +138,6 @@ export default function Navbar() {
                   cursor="pointer"
                   zIndex="1"
                   onClick={() => setShow(!show)}
-                />
-              )}
-              {clear && title.length > 0 && (
-                <CloseButton
-                  size="sm"
-                  onClick={clearFilter}
-                  position="absolute"
-                  right={3}
-                  top="0.5rem"
-                  zIndex="1"
                 />
               )}
             </FormControl>
