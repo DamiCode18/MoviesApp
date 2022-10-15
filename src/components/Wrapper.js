@@ -10,7 +10,7 @@ export default function Wrapper() {
   const bg = mode === "dark" ? "black" : "white";
   const color = mode === "dark" ? "white" : "black";
   return (
-    <Box bg={bg} color={color} px={10} mt={2}>
+    <Box bg={bg} color={color} mt={2}>
       <Navbar />
       <Movies />
     </Box>

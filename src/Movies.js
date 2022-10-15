@@ -23,8 +23,29 @@ export default function Movies() {
   return (
     <Box>
       <Box position="relative">
-        <Heading position="absolute" h="100px" bg='black' mt='250px' maxW="400px">Unlimited Access to your Favorites Movies</Heading>
+        <Heading
+          position="absolute"
+          h="100px"
+          bg="black"
+          mt="250px"
+          maxW="400px"
+        >
+          Unlimited Access to your Favorites Movies
+        </Heading>
         <Image src={Poster} alt="image of a movie" objectFit="cover" h='700px' w='full' />
+          {/* <Box
+            as="video"
+            allow='autoplay'
+            controls
+            w='100%'
+            src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+            poster={Poster}
+            alt="Big Buck Bunny"
+            objectFit="contain"
+            sx={{
+              aspectRatio: "16/9",
+            }}
+          /> */}
       </Box>
       <Flex>
         <Text color={color} fontWeight="bold" p={2} mt={2}>
@@ -40,7 +61,7 @@ export default function Movies() {
               alt="movie_poster"
               borderRadius="xl"
               w="100%"
-              h='300px'
+              h="300px"
               objectFit="cover"
             />
             <Text color={color} fontSize="sm" fontWeight="semi-bold">
@@ -50,7 +71,12 @@ export default function Movies() {
                   label={movie.Title}
                   aria-label="A tooltip"
                 >
-                  <Text>{`${movie.Title.substring(0, 20)}...`}</Text>
+                  <Text
+                    overflow="hidden"
+                    w="auto"
+                    whiteSpace="nowrap"
+                    textOverflow="ellipsis"
+                  >{`${movie.Title}`}</Text>
                 </Tooltip>
               ) : (
                 movie.Title

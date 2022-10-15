@@ -32,11 +32,6 @@ export default function Navbar() {
   const handleChange = (e) => {
     setTitle(e.target.value.toLowerCase());
   };
-  const clearFilter = () => {
-    setTitle("");
-    setMovie("");
-    setShow(!show);
-  };
 
   useOutsideClick({
     ref: ref,
@@ -72,7 +67,7 @@ export default function Navbar() {
     refetch();
   };
   return (
-    <Flex>
+    <Flex px={10}>
       <Box mr={10}>
         <Text color="#e50914" fontWeight={700} fontSize={25} cursor="pointer">
           NETFLIX
