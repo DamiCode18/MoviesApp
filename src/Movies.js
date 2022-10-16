@@ -25,27 +25,37 @@ export default function Movies() {
       <Box position="relative">
         <Heading
           position="absolute"
-          h="100px"
-          bg="black"
-          mt="250px"
           maxW="400px"
+          top='50%'
+          color='red.600'
+          opacity={.8}
+          fontSize={{ base: '14px', md: '40px', lg: '56px' }}
+          left='50%'
+          margin='-100px 0 0 -150px'
         >
           Unlimited Access to your Favorites Movies
         </Heading>
-        <Image src={Poster} alt="image of a movie" objectFit="cover" h='700px' w='full' />
-          {/* <Box
-            as="video"
-            allow='autoplay'
-            controls
-            w='100%'
-            src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
-            poster={Poster}
-            alt="Big Buck Bunny"
-            objectFit="contain"
-            sx={{
-              aspectRatio: "16/9",
-            }}
-          /> */}
+        <Image
+          src={Poster}
+          alt="image of a movie"
+          objectFit={{base: "cover", md: 'contain', lg: 'contain'}}
+          h={{base: "400px", md: "550px", lg: "700px"}}
+          w="full"
+        />
+        {/* <Box
+          as="video"
+          controls
+          w='full'
+          h='700px'
+          autoplay
+          src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+          poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+          alt="Big Buck Bunny"
+          objectFit="cover"
+          sx={{
+            aspectRatio: "16/9",
+          }}
+        /> */}
       </Box>
       <Flex>
         <Text color={color} fontWeight="bold" p={2} mt={2}>
