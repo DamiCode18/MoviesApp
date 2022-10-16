@@ -26,11 +26,11 @@ export default function Movies() {
         <Heading
           position="absolute"
           maxW="400px"
-          top='50%'
-          color='red.600'
-          opacity={.8}
-          fontSize={{ base: '14px', md: '40px', lg: '56px' }}
-          left='50%'
+          top='60%'
+          color='white'
+          opacity={.7}
+          fontSize={{ base: '22px', md: '40px', lg: '56px' }}
+          left='30%'
           margin='-100px 0 0 -150px'
         >
           Unlimited Access to your Favorites Movies
@@ -38,24 +38,10 @@ export default function Movies() {
         <Image
           src={Poster}
           alt="image of a movie"
-          objectFit={{base: "cover", md: 'contain', lg: 'contain'}}
+          objectFit='cover'
           h={{base: "400px", md: "550px", lg: "700px"}}
           w="full"
         />
-        {/* <Box
-          as="video"
-          controls
-          w='full'
-          h='700px'
-          autoplay
-          src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
-          poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
-          alt="Big Buck Bunny"
-          objectFit="cover"
-          sx={{
-            aspectRatio: "16/9",
-          }}
-        /> */}
       </Box>
       <Flex>
         <Text color={color} fontWeight="bold" p={2} mt={2}>
