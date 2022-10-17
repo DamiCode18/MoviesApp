@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Text,
@@ -15,11 +15,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { darkModeState, moviesDataState } from "./recoil/darkmode";
 
 export default function Movies() {
-  const [movies, setMovies] = useState(FeaturedMovies);
   const [mode] = useRecoilState(darkModeState);
   const movie = useRecoilValue(moviesDataState);
   const color = mode === "dark" ? "white" : "black";
-  console.log(movie);
   return (
     <Box>
       <Box position="relative">
@@ -33,7 +31,7 @@ export default function Movies() {
           left='30%'
           margin='-100px 0 0 -150px'
         >
-          Unlimited Access to your Favorites Movies
+          Unlimited Access to your Favorite Movies
         </Heading>
         <Image
           src={Poster}
@@ -44,13 +42,13 @@ export default function Movies() {
         />
       </Box>
       <Flex>
-        <Text color={color} fontWeight="bold" p={2} mt={2}>
+        <Text color={color} fontWeight="bold" p={2} mt={5}>
           Featured
         </Text>
         <Spacer />
       </Flex>
       <SimpleGrid columns={{ base: 2, md: 4, lg: 6, xl: 8 }} spacing={5}>
-        {movies.map((movie) => (
+        {!movie ? FeaturedMovies.map((movie) => (
           <Box key={movie.Title} cursor="pointer" h="350px" py={4}>
             <Image
               src={movie.Poster}
@@ -83,7 +81,40 @@ export default function Movies() {
               {movie.imdbRating}
             </Badge>
           </Box>
-        ))}
+        )) : 
+        <Box key={movie.Title} cursor="pointer" h="350px" py={4}>
+        <Image
+          src={movie.Poster}
+          alt="movie_poster"
+          borderRadius="xl"
+          w="100%"
+          h="300px"
+          objectFit="cover"
+        />
+        <Text color={color} fontSize="sm" fontWeight="semi-bold">
+          {movie.Title.length >= 20 ? (
+            <Tooltip
+              placement="top"
+              label={movie.Title}
+              aria-label="A tooltip"
+            >
+              <Text
+                overflow="hidden"
+                w="auto"
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+              >{`${movie.Title}`}</Text>
+            </Tooltip>
+          ) : (
+            movie.Title
+          )}
+        </Text>
+        <Badge>IMDB</Badge>-
+        <Badge colorScheme="pink" borderRadius={10} w={10}>
+          {movie.imdbRating}
+        </Badge>
+      </Box>
+        }
       </SimpleGrid>
     </Box>
   );

@@ -15,7 +15,7 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useQuery } from "@tanstack/react-query";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { darkModeState, moviesDataState } from "../recoil/darkmode";
 import { fetchMovies } from "./Api";
 
@@ -26,7 +26,7 @@ export default function Navbar() {
   const [title, setTitle] = useState("");
   const [show, setShow] = useState(false);
   const [fetch, setFetch] = useState(false);
-  const [setMovie] = useRecoilState(moviesDataState);
+  const setMovie = useSetRecoilState(moviesDataState);
   const color = mode === "dark" ? "white" : "black";
 
   const handleChange = (e) => {
@@ -58,7 +58,6 @@ export default function Navbar() {
       },
       onError: () => {
         setFetch(false);
-        console.log("ERROR");
       },
     }
   );
@@ -113,7 +112,7 @@ export default function Navbar() {
                 />
                 {show && (
                   <Input
-                    autoComplete={false}
+                    autoComplete='false'
                     _placeholder={{ paddingLeft: "30px" }}
                     placeholder="search movies..."
                     type="search"
