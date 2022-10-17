@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useRef } from "react";
 import {
   Box,
@@ -18,8 +19,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { darkModeState, moviesDataState } from "../recoil/darkmode";
 import { fetchMovies } from "./Api";
+import "./Navbar.css";
 
 export default function Navbar() {
+  const [active, setActive] = useState(false);
   const [mode, setMode] = useRecoilState(darkModeState);
   const ref = useRef();
   const toast = useToast();
@@ -28,6 +31,7 @@ export default function Navbar() {
   const [fetch, setFetch] = useState(false);
   const setMovie = useSetRecoilState(moviesDataState);
   const color = mode === "dark" ? "white" : "black";
+  const color2 = mode === "dark" ? "black" : "white";
 
   const handleChange = (e) => {
     setTitle(e.target.value.toLowerCase());
@@ -66,98 +70,134 @@ export default function Navbar() {
     refetch();
   };
   return (
-    <Flex px={10}>
+    <Flex background={color2} p={{ base: "0", md: 4 }} className="main-header">
       <Box mr={10}>
-        <Text color="#e50914" fontWeight={700} fontSize={25} cursor="pointer">
+        <Text
+          fontSize={{ base: "17px", md: "25px" }}
+          color="#e50914"
+          fontWeight={700}
+          cursor="pointer"
+          p={{ base: "2", md: "0px" }}
+        >
           NETFLIX
         </Text>
       </Box>
-      <Box mt={2}>
-        <Flex>
-          <Text mr={4} color={color} fontWeight={500} fontSize={14}>
-            TV Shows
-          </Text>
-          <Text mr={4} color={color} fontWeight={500} fontSize={14}>
+      <Box mt={3}>
+        <Box
+          order={{base: "2", md:"1"}}
+          href="#"
+          color={color}
+          className="toggle-button"
+          onClick={() => setActive(!active)}
+        >
+          {active ? (
+            <>
+              <span className="RotateX"></span>
+              <span className="RotateY"></span>
+            </>
+          ) : (
+            <>
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+            </>
+          )}
+        </Box>
+        <nav style={{color: color}} className="main-nav">
+          <ul className={active && "active"}>
+            <li>
+              TV Shows
+            </li>
+            <li>
             New & Popular
-          </Text>
-          <Text mr={4} color={color} fontWeight={500} fontSize={14}>
+            </li>
+            <li>
             My List
-          </Text>
-        </Flex>
+            </li>
+            <li>
+              <form className="li-search" onSubmit={searchMovie} mt={-2}>
+                <FormControl ref={ref}>
+                  <InputGroup size="sm">
+                    <InputLeftElement
+                      pointerEvents="true"
+                      children={
+                        show && (
+                          <Search2Icon
+                            color={color}
+                            ml={2}
+                            position="absolute"
+                            left={1}
+                            top="0rem"
+                            cursor="pointer"
+                            zIndex="999"
+                            onClick={() => title === "" && setShow(!show)}
+                          />
+                        )
+                      }
+                    />
+                    {show && (
+                      <Input
+                        autoComplete="false"
+                        _placeholder={{ paddingLeft: "30px" }}
+                        placeholder="search movies..."
+                        type="search"
+                        color={color}
+                        marginTop="-10px"
+                        borderColor="none"
+                        value={title}
+                        borderRadius="3xl"
+                        onChange={handleChange}
+                      />
+                    )}
+                  </InputGroup>
+                  {!show && title.length === 0 && (
+                    <Search2Icon
+                      color={color}
+                      position="absolute"
+                      right={3}
+                      top="0.2rem"
+                      cursor="pointer"
+                      zIndex="1"
+                      onClick={() => setShow(!show)}
+                    />
+                  )}
+                </FormControl>
+              </form>
+            </li>
+          </ul>
+        </nav>
       </Box>
       <Spacer />
-      <Box position="relative">
+      <Box position="relative" order={{base: "1", md: '2'}}>
         <Flex>
-          <form onSubmit={searchMovie}>
-            <FormControl
-              ref={ref}
+          <Box mt={0.5} mx={2}>
+            <Button
+              bg={color === "black" ? "gray.200" : "gray.500"}
+              zIndex="999999"
+              borderRadius="1.375rem"
+              h="32px"
+              minH="32px"
+              w="30px"
+              verticalAlign="middle"
+              minW="30px"
             >
-              <InputGroup size="md">
-                <InputLeftElement
-                  pointerEvents="true"
-                  children={
-                    show && (
-                      <Search2Icon
-                        color={color}
-                        ml={2}
-                        position="absolute"
-                        left={1}
-                        top="0.8rem"
-                        cursor="pointer"
-                        zIndex="999"
-                        onClick={() => title === "" && setShow(!show)}
-                      />
-                    )
-                  }
-                />
-                {show && (
-                  <Input
-                    autoComplete='false'
-                    _placeholder={{ paddingLeft: "30px" }}
-                    placeholder="search movies..."
-                    type="search"
-                    color={color}
-                    borderColor="none"
-                    value={title}
-                    onChange={handleChange}
-                  />
-                )}
-              </InputGroup>
-              {!show && title.length === 0 && (
-                <Search2Icon
-                  color={color}
-                  position="absolute"
-                  right={3}
-                  top="0.7rem"
+              {mode === "dark" ? (
+                <SunIcon
+                  fontSize={18}
                   cursor="pointer"
-                  zIndex="1"
-                  onClick={() => setShow(!show)}
+                  color={color}
+                  onClick={() => setMode("light")}
+                />
+              ) : (
+                <MoonIcon
+                  fontSize={18}
+                  cursor="pointer"
+                  color={color}
+                  onClick={() => setMode("dark")}
                 />
               )}
-            </FormControl>
-          </form>
-          <Box>
-        <Button
-          colorScheme="gray.50"
-          zIndex="999999"
-        >
-          {mode === "dark" ? (
-            <SunIcon
-              fontSize={18}
-              cursor="pointer"
-              color={color}
-              onClick={() => setMode("light")}
-            />
-          ) : (
-            <MoonIcon
-              fontSize={18}
-              cursor="pointer"
-              color={color}
-              onClick={() => setMode("dark")}
-            />
-          )}
-        </Button>
-      </Box>
+            </Button>
+          </Box>
         </Flex>
       </Box>
     </Flex>
