@@ -32,7 +32,7 @@ export default function Navbar() {
   const setMovie = useSetRecoilState(moviesDataState);
   const color = mode === "dark" ? "white" : "black";
   const color2 = mode === "dark" ? "black" : "white";
-
+  const styleOnMode = { backgroundColor: mode === "dark" ? "#fff" : "#000" };
   const handleChange = (e) => {
     setTitle(e.target.value.toLowerCase());
   };
@@ -84,7 +84,7 @@ export default function Navbar() {
       </Box>
       <Box mt={3}>
         <Box
-          order={{base: "2", md:"1"}}
+          order={{ base: "2", md: "1" }}
           href="#"
           color={color}
           className="toggle-button"
@@ -92,28 +92,22 @@ export default function Navbar() {
         >
           {active ? (
             <>
-              <span className="RotateX"></span>
-              <span className="RotateY"></span>
+              <span style={styleOnMode} className="RotateX"></span>
+              <span style={styleOnMode} className="RotateY"></span>
             </>
           ) : (
             <>
-              <span className="bar"></span>
-              <span className="bar"></span>
-              <span className="bar"></span>
+              <span style={styleOnMode} className="bar"></span>
+              <span style={styleOnMode} className="bar"></span>
+              <span style={styleOnMode} className="bar"></span>
             </>
           )}
         </Box>
-        <nav style={{color: color}} className="main-nav">
+        <nav style={{ color: color }} className="main-nav">
           <ul className={active && "active"}>
-            <li>
-              TV Shows
-            </li>
-            <li>
-            New & Popular
-            </li>
-            <li>
-            My List
-            </li>
+            <li>TV Shows</li>
+            <li>New & Popular</li>
+            <li>My List</li>
             <li>
               <form className="li-search" onSubmit={searchMovie} mt={-2}>
                 <FormControl ref={ref}>
@@ -168,7 +162,7 @@ export default function Navbar() {
         </nav>
       </Box>
       <Spacer />
-      <Box position="relative" order={{base: "1", md: '2'}}>
+      <Box position="relative" order={{ base: "1", md: "2" }}>
         <Flex>
           <Box mt={0.5} mx={2}>
             <Button

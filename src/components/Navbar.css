@@ -20,12 +20,7 @@ body {
   list-style: none;
 }
 
-.main-nav a {
-  color: inherit;
-  text-decoration: none;
-  padding: 0 1rem;
-}
-.main-nav a:hover {
+.main-nav li:hover {
   color: #585050;
 }
 .toggle-button {
@@ -42,6 +37,7 @@ li {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
   position: fixed;
   width: 100%;
+  z-index: 999;
   overflow: hidden;
   top: 0;
 }
